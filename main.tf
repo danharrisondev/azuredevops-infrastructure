@@ -18,6 +18,12 @@ terraform {
         version = ">=3.10.0"
     }
   }
+
+  backend "azurerm" {
+    resource_group_name = "rg-azdo-infrastructure"
+    storage_account_name = "azdoinfrastructure"
+    container_name = "tfstate"
+  }
 }
 
 provider "azuredevops" {
