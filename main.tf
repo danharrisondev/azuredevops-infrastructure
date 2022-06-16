@@ -1,8 +1,8 @@
-variable "org_service_url" {
+variable "TF_ORG_SERVICE_URL" {
   type = string
 }
 
-variable "personal_access_token" {
+variable "TF_PERSONAL_ACCESS_TOKEN" {
     type = string
 }
 
@@ -27,8 +27,8 @@ terraform {
 }
 
 provider "azuredevops" {
-  org_service_url = var.org_service_url
-  personal_access_token = var.personal_access_token
+  org_service_url = var.TF_ORG_SERVICE_URL
+  personal_access_token = var.TF_PERSONAL_ACCESS_TOKEN
 }
 
 resource "azuredevops_project" "first_project" {
