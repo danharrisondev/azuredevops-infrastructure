@@ -4,8 +4,7 @@
 # https://aka.ms/yaml
 
 variables:
-  TF_VAR_ORG_SERVICE_URL: '$(OrgServiceUrl)'
-  TF_VAR_ORG_PERSONAL_ACCESS_TOKEN: $(PersonalAccessToken)
+  - group: terraform
 
 trigger:
 - master
@@ -23,7 +22,7 @@ steps:
       backendAzureRmResourceGroupName: 'rg-azdo-infrastructure'
       backendAzureRmStorageAccountName: 'azdoinfrastructure'
       backendAzureRmContainerName: 'tfstate'
-      backendAzureRmKey: 'azdo2/terraform.tfstate'
+      backendAzureRmKey: 'azdo3/terraform.tfstate'
   - task: TerraformTaskV3@3
     displayName: terraform apply
     inputs:
