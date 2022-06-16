@@ -23,7 +23,7 @@ steps:
       backendAzureRmResourceGroupName: 'rg-azdo-infrastructure'
       backendAzureRmStorageAccountName: 'azdoinfrastructure'
       backendAzureRmContainerName: 'tfstate'
-      backendAzureRmKey: 'azuredevops/terraform.tfstate'
+      backendAzureRmKey: 'azdo/terraform.tfstate'
   - task: TerraformTaskV3@3
     displayName: terraform apply
     inputs:
