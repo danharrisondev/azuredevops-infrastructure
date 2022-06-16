@@ -22,10 +22,11 @@ steps:
       backendAzureRmResourceGroupName: 'rg-azdo-infrastructure'
       backendAzureRmStorageAccountName: 'azdoinfrastructure'
       backendAzureRmContainerName: 'tfstate'
-      backendAzureRmKey: 'azdo3/terraform.tfstate'
+      backendAzureRmKey: 'azdo4/terraform.tfstate'
   - task: TerraformTaskV3@3
     displayName: terraform apply
     inputs:
       provider: 'azurerm'
       command: 'apply'
+      commandOptions: '-var "TF_VAR_ORG_SERVICE_URL=$(TF_VAR_ORG_SERVICE_URL)" -var "TF_VAR_ORG_PERSONAL_ACCESS_TOKEN=$(TF_VAR_ORG_PERSONAL_ACCESS_TOKEN)"'
       environmentServiceNameAzureRM: 'Pay-As-You-Go(1647cdc9-e603-4fad-9c60-a1368dfd6fdf)'
