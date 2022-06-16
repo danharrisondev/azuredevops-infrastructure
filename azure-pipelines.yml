@@ -4,8 +4,8 @@
 # https://aka.ms/yaml
 
 variables:
-  TF_ORG_SERVICE_URL: '$(OrgServiceUrl)'
-  TF_ORG_PERSONAL_ACCESS_TOKEN: $(PersonalAccessToken)
+  TF_VAR_ORG_SERVICE_URL: '$(OrgServiceUrl)'
+  TF_VAR_ORG_PERSONAL_ACCESS_TOKEN: $(PersonalAccessToken)
 
 trigger:
 - master
