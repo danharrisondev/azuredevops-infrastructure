@@ -39,7 +39,7 @@ resource "azuredevops_project" "first_project" {
 resource "azuredevops_build_definition" "first_build_definition" {
   // azure devops built definition
   name = "First Build Definition"
-  project = azuredevops_project.first_project.id
+  project_id = azuredevops_project.first_project.id
   agent_pool_name = "Azure Pipelines"
 
   ci_trigger {
@@ -48,6 +48,10 @@ resource "azuredevops_build_definition" "first_build_definition" {
 
   pull_request_trigger {
     use_yaml = true
+    forks {
+      enabled = true
+      share_secrets = true
+    }
   }
 
   repository {
