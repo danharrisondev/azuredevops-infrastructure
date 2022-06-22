@@ -3,7 +3,11 @@ variable "TF_VAR_ORG_SERVICE_URL" {
 }
 
 variable "TF_VAR_PERSONAL_ACCESS_TOKEN" {
-    type = string
+  type = string
+}
+
+variable "TF_VAR_GITHUB_PERSONAL_ACCESS_TOKEN" {
+  type = string
 }
 
 terraform {
@@ -42,7 +46,7 @@ resource "azuredevops_serviceendpoint_github" "serviceendpoint_github" {
   description = ""
 
   auth_personal {
-    personal_access_token = var.TF_VAR_PERSONAL_ACCESS_TOKEN
+    personal_access_token = var.TF_VAR_GITHUB_PERSONAL_ACCESS_TOKEN
   }
 
   lifecycle {
