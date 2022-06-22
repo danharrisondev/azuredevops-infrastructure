@@ -28,5 +28,5 @@ steps:
     inputs:
       provider: 'azurerm'
       command: 'apply'
-      commandOptions: '-var "TF_VAR_ORG_SERVICE_URL=$(TF_VAR_ORG_SERVICE_URL)" -var "TF_VAR_PERSONAL_ACCESS_TOKEN=$(TF_VAR_PERSONAL_ACCESS_TOKEN)"'
+      commandOptions: '-var "TF_VAR_ORG_SERVICE_URL=$(TF_VAR_ORG_SERVICE_URL)" -var "TF_VAR_PERSONAL_ACCESS_TOKEN=$(TF_VAR_PERSONAL_ACCESS_TOKEN)" -var "TF_VAR_GITHUB_PERSONAL_ACCESS_TOKEN=$(TF_VAR_GITHUB_PERSONAL_ACCESS_TOKEN)"'
       environmentServiceNameAzureRM: 'Pay-As-You-Go(1647cdc9-e603-4fad-9c60-a1368dfd6fdf)'
