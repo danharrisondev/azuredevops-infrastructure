@@ -36,6 +36,24 @@ resource "azuredevops_project" "first_project" {
   description = "Constructed with Terraform"
 }
 
+resource "azuredevops_serviceendpoint_github" "serviceendpoint_github" {
+  project_id = azuredevops_project.first_project.id
+  service_endpoint_name = "github"
+  description = ""
+
+  auth_personal {
+    personal_access_token = var.TF_VAR_PERSONAL_ACCESS_TOKEN
+  }
+
+  lifecycle {
+    ignore_changes = [
+      service_endpoint_name,
+      auth_personal,
+      description
+    ]
+  }
+}
+
 resource "azuredevops_build_definition" "first_build_definition" {
   // azure devops built definition
   name = "First Build Definition"
@@ -59,5 +77,6 @@ resource "azuredevops_build_definition" "first_build_definition" {
     repo_id = "danharrisondev/express-hello-world"
     branch_name = "master"
     yml_path = "deploy/pipelines/azure-pipelines.yml"
+    service_connection_id = azuredevops_serviceendpoint_github.serviceendpoint_github.id
   }
 }
