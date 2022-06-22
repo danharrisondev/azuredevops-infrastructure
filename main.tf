@@ -35,3 +35,25 @@ resource "azuredevops_project" "first_project" {
   name = "First Project"
   description = "Constructed with Terraform"
 }
+
+resource "azuredevops_build_definition" "first_build_definition" {
+  // azure devops built definition
+  name = "First Build Definition"
+  project = azuredevops_project.first_project.id
+  agent_pool_name = "Azure Pipelines"
+
+  ci_trigger {
+    use_yaml = true
+  }
+
+  pull_request_trigger {
+    use_yaml = true
+  }
+
+  repository {
+    repo_type = "GitHub"
+    repo_id = "danharrisondev/express-hello-world"
+    branch_name = "master"
+    yml_path = "deploy/pipelines/azure-pipelines.yml"
+  }
+}
