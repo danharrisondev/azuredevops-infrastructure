@@ -88,3 +88,29 @@ resource "azuredevops_build_definition" "build_code" {
     service_connection_id = azuredevops_serviceendpoint_github.github_service_endpoint.id
   }
 }
+
+resource "azuredevops_build_definition" "build_code" {
+  project_id = azuredevops_project.express_hello_world_project.id
+  name = "Build Infrastructure"
+  agent_pool_name = "Azure Pipelines"
+
+  ci_trigger {
+    use_yaml = true
+  }
+
+  pull_request_trigger {
+    use_yaml = true
+    forks {
+      enabled = true
+      share_secrets = true
+    }
+  }
+
+  repository {
+    repo_type = "GitHub"
+    repo_id = "danharrisondev/express-hello-world"
+    branch_name = "master"
+    yml_path = "deploy/pipelines/azure-pipelines-infrastructure.yml"
+    service_connection_id = azuredevops_serviceendpoint_github.github_service_endpoint.id
+  }
+}
