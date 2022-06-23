@@ -89,7 +89,7 @@ resource "azuredevops_build_definition" "build_code" {
   }
 }
 
-resource "azuredevops_build_definition" "build_code" {
+resource "azuredevops_build_definition" "build_infrastructure" {
   project_id = azuredevops_project.express_hello_world_project.id
   name = "Build Infrastructure"
   agent_pool_name = "Azure Pipelines"
