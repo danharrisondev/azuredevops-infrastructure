@@ -34,26 +34,3 @@ provider "azuredevops" {
   org_service_url = var.TF_VAR_ORG_SERVICE_URL
   personal_access_token = var.TF_VAR_PERSONAL_ACCESS_TOKEN
 }
-
-resource "azuredevops_project" "first_project" {
-  name = "First Project"
-  description = "Constructed with Terraform"
-}
-
-resource "azuredevops_serviceendpoint_github" "serviceendpoint_github" {
-  project_id = azuredevops_project.first_project.id
-  service_endpoint_name = "github"
-  description = ""
-
-  auth_personal {
-    personal_access_token = var.TF_VAR_GITHUB_PERSONAL_ACCESS_TOKEN
-  }
-
-  lifecycle {
-    ignore_changes = [
-      service_endpoint_name,
-      auth_personal,
-      description
-    ]
-  }
-}
